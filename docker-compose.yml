@@ -1,6 +1,7 @@
-version: '2'
+version: '3'
 services:
     httpbin:
-      build: '.'
+      container_name: httpbin
+      build: .
       ports:
-        - '80:80'
+        - 82:80

@@ -8,7 +8,19 @@ LABEL org.kennethreitz.vendor="Kenneth Reitz"
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-RUN apt update -y && apt install python3-pip git -y && pip3 install --no-cache-dir pipenv
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
+RUN echo "\
+deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse\n\
+" > /etc/apt/sources.list
+
+
+RUN apt update -y && apt install python3-pip git -y
+
+RUN python3 -m pip install -U pip && pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple && pip3 install --no-cache-dir pipenv
 
 ADD Pipfile Pipfile.lock /httpbin/
 WORKDIR /httpbin
