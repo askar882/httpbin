@@ -30,4 +30,4 @@ See http://httpbin.org for more information.
 
 ## Build Status
 
-[![Build Status](https://travis-ci.org/postmanlabs/httpbin.svg?branch=master)](https://travis-ci.org/postmanlabs/httpbin)
+[![Build Status](https://api.travis-ci.org/postmanlabs/httpbin.svg?branch=master)](https://travis-ci.org/postmanlabs/httpbin)
