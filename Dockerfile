@@ -20,7 +20,7 @@ deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe 
 
 RUN apt update -y && apt install python3-pip git -y
 
-RUN python3 -m pip install -U pip && pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple && pip3 install --no-cache-dir pipenv
+RUN python3 -m pip install -i https://mirrors.aliyun.com/pypi/simple -U pip && pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple && pip3 install --no-cache-dir pipenv
 
 ADD Pipfile Pipfile.lock /httpbin/
 WORKDIR /httpbin
