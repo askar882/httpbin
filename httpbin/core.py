@@ -26,6 +26,7 @@ from flask import (
     url_for,
     abort,
 )
+from flask_compress import Compress
 from six.moves import range as xrange
 from werkzeug.datastructures import WWWAuthenticate, MultiDict
 from werkzeug.http import http_date
@@ -96,7 +97,7 @@ template = {
         "title": "httpbin.org",
         "description": (
             "A simple HTTP Request & Response Service."
-            "<br/> <br/> <b>Run locally: </b> <code>$ docker run -p 80:80 kennethreitz/httpbin</code>"
+            "<br/> <br/> <b>Run locally: </b> <code>$ docker run -p 80:80 askar882/httpbin</code>"
         ),
         "contact": {
             "responsibleOrganization": "Kenneth Reitz",
@@ -1783,4 +1784,5 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, default=5000)
     parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
+    Compress().init_app(app)
     app.run(port=args.port, host=args.host)
