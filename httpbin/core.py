@@ -84,6 +84,7 @@ BaseResponse.autocorrect_location_header = False
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
 
 app = Flask(__name__, template_folder=tmpl_dir)
+Compress(app)
 app.debug = bool(os.environ.get("DEBUG"))
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
@@ -1784,5 +1785,4 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, default=5000)
     parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args()
-    Compress().init_app(app)
     app.run(port=args.port, host=args.host)
